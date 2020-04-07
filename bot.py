@@ -8,18 +8,20 @@ from dotenv import load_dotenv
 load_dotenv()
 
 token = os.getenv('DISCORD_TOKEN')
-
 region = os.getenv('REGION_ID')
 instance = os.getenv('INSTANCE_ID')
 
 ec2 = boto3.client('ec2', region_name=region)
-
 bot = commands.Bot(command_prefix='!')
 
 @bot.command(name='start', help='Starts Minecraft server')
 async def start_instance(ctx):
     mention = ctx.author.id
     ec2.start_instances(InstanceIds=[instance])
+    instance_info = ec2.describe_instances()
+    if instance_info['Reservations']['Instances']['InstanceId'] == instance:
+        instance_ip = instance_info['Reservations']['Instances']['PublicIpAddress']
+
     await ctx.send(f'<@{mention}> Starting Minecraft server..')
 
 @bot.command(name='stop', help='Stops Minecraft Server')
