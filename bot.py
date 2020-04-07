@@ -1,7 +1,6 @@
 import os
 import time
 
-import pandas as pd
 from discord.ext import commands
 from dotenv import load_dotenv
 
