@@ -30,8 +30,9 @@ async def stop_instance(ctx):
 async def status_instance(ctx):
     mention = ctx.author.id
     instance_info = ec2.describe_instances()
-    if instance_info['Reservations']['Instances']['InstanceId'] == instance:
-        instance_ip = instance_info['Reservations']['Instances']['PublicIpAddress']
-    await ctx.send(f'<@{mention}> Minecraft server IP: {instance_ip}')
+    # if instance_info['Reservations']['Instances']['InstanceId'] == instance:
+    #     instance_ip = instance_info['Reservations']['Instances']['PublicIpAddress']
+    # await ctx.send(f'<@{mention}> Minecraft server IP: {instance_ip}')
+    aws ctx.send(instance_info)
 
 bot.run(token)
