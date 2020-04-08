@@ -35,7 +35,7 @@ async def status_instance(ctx):
             if instance == instances['InstanceId']:
                 ipaddress = instances['PublicIpAddress']
             else:
-                ipaddress = 'NOT ONLINE'
+                ipaddress = "NOT ONLINE"
     await ctx.send(f'<@{mention}> Server IP address: {ipaddress}')
 
 bot.run(token)
