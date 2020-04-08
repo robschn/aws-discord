@@ -33,6 +33,6 @@ async def status_instance(ctx):
     # if instance_info['Reservations']['Instances']['InstanceId'] == instance:
     #     instance_ip = instance_info['Reservations']['Instances']['PublicIpAddress']
     # await ctx.send(f'<@{mention}> Minecraft server IP: {instance_ip}')
-    await ctx.send(instance_info)
+    await ctx.send(instance_info['Reservations']['Instances']['InstanceId'])
 
 bot.run(token)
