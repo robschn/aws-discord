@@ -18,13 +18,13 @@ bot = commands.Bot(command_prefix='!')
 async def start_instance(ctx):
     mention = ctx.author.id
     ec2.start_instances(InstanceIds=[instance])
-    await ctx.send(f'<@{mention}> Starting Minecraft server..')
+    await ctx.send(f'<@{mention}> Starting server..')
 
 @bot.command(name='stop', help='Stops Minecraft Server')
 async def stop_instance(ctx):
     mention = ctx.author.id
     ec2.stop_instances(InstanceIds=[instance])
-    await ctx.send(f'<@{mention}> Stopping Minecraft server..')
+    await ctx.send(f'<@{mention}> Stopping server..')
 
 @bot.command(name='status', help='Displays the status of the Minecraft server')
 async def status_instance(ctx):
@@ -34,6 +34,6 @@ async def status_instance(ctx):
         for instances in reservation['Instances']:
             if instance == instances['InstanceId']:
                 ipaddress = instances['PublicIpAddress']
-    await ctx.send(ipaddress)
+    await ctx.send(f'Server IP address: {ipaddress}')
 
 bot.run(token)
