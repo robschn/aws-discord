@@ -32,9 +32,10 @@ async def status_instance(ctx):
     instance_info = ec2.describe_instances()
     for reservation in instance_info['Reservations']:
         for instances in reservation['Instances']:
-            if instance == instances['InstanceId']:
-                ipaddress = instances['PublicIpAddress']
-            else:
+            try:
+                if instance == instances['InstanceId']:
+                    ipaddress = instances['PublicIpAddress']
+            except:
                 ipaddress = "NOT ONLINE"
     await ctx.send(f'<@{mention}> Server IP address: {ipaddress}')
 
